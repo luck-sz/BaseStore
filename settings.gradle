@@ -1,0 +1,3 @@
+rootProject.name = "BaseStore"
+include ':app'
+include ':baselibrary'

@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.library'
+    id 'maven'
+}
+
+android {
+    compileSdkVersion 32
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation files('libs/ormlite-android-5.1.jar')
+    implementation files('libs/ormlite-core-5.1.jar')
+    // 引入BaseRecyclerViewAdapterHelper库
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11'
+    // Banner
+    implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'
+    implementation 'com.blankj:utilcodex:1.31.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    // 引入Gson库
+    implementation 'com.google.code.gson:gson:2.9.0'
+    // 引入CircleImageView照片库
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.github.li-xiaojun:XPopup:2.8.3'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.github.tamsiree.RxTool:RxKit:2.6.3'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'https://packages.aliyun.com/maven/repository/2309807-release-BxTG4x/') {
+                authentication(
+                        userName: '638af3bb7b63b44dd7d37a23',
+                        password: 'j1[hHjH=[hMw'
+                )
+            }
+            pom.version = '1.0.5'
+            pom.artifactId = 'util'
+            pom.groupId = 'com.android'
+        }
+    }
+}
